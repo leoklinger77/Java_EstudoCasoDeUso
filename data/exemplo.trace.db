@@ -837,3 +837,6 @@ DELETE CATEGORIA[*] WHERE ID IN ('3','4')"; SQL statement:
 select * from categoria
 
 delete categoria where id in ('3','4') [42000-200]
+2021-03-10 09:00:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CATEGORIA PRODUTO PRODUTO_CATEGORIA[*]"; SQL statement:
+SELECT * FROM CATEGORIA PRODUTO PRODUTO_CATEGORIA [42000-200]
