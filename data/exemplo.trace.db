@@ -820,3 +820,20 @@ SELECT[*] * FROM CATEGORIA"; SQL statement:
 insert into categoria(name) values('Informática')
 
 select * from categoria [42000-200]
+2021-03-10 08:36:08 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "JAVASCRIPT[*]:INS('CATEGORIA',TRUE)"; SQL statement:
+javascript:ins('CATEGORIA',true) [42000-200]
+2021-03-10 08:36:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CATEGORIA
+
+DELETE CATEGORIA[*] WHERE ID IN (3,4)"; SQL statement:
+select * from categoria
+
+delete categoria where id in (3,4) [42000-200]
+2021-03-10 08:36:58 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CATEGORIA
+
+DELETE CATEGORIA[*] WHERE ID IN ('3','4')"; SQL statement:
+select * from categoria
+
+delete categoria where id in ('3','4') [42000-200]
