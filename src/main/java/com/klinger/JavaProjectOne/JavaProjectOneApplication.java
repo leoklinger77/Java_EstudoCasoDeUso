@@ -1,5 +1,6 @@
 package com.klinger.JavaProjectOne;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.klinger.JavaProjectOne.domain.Categoria;
 import com.klinger.JavaProjectOne.domain.Cidade;
+import com.klinger.JavaProjectOne.domain.Cliente;
+import com.klinger.JavaProjectOne.domain.Endereco;
 import com.klinger.JavaProjectOne.domain.Estado;
 import com.klinger.JavaProjectOne.domain.Produto;
+import com.klinger.JavaProjectOne.domain.enums.TipoCliente;
 import com.klinger.JavaProjectOne.repositories.CategoriaRepository;
 import com.klinger.JavaProjectOne.repositories.CidadeRepository;
+import com.klinger.JavaProjectOne.repositories.ClienteRepository;
+import com.klinger.JavaProjectOne.repositories.EnderecoRepository;
 import com.klinger.JavaProjectOne.repositories.EstadoRepository;
 import com.klinger.JavaProjectOne.repositories.ProdutoRepository;
 
@@ -27,6 +33,10 @@ public class JavaProjectOneApplication implements CommandLineRunner {
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(JavaProjectOneApplication.class, args);
@@ -56,15 +66,28 @@ public class JavaProjectOneApplication implements CommandLineRunner {
 		
 		Cidade c1 = new Cidade(null, "Uberlândia", est1);
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
-		Cidade c3 = new Cidade(null, "Campinas", est2);
+		Cidade c3 = new Cidade(null, "Campinas", est2);		
 		
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est1.getCidades().addAll(Arrays.asList(c2,c3));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "3601856548", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("1147894789","1123562356"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "381256825", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "SAla 800", "Centro", "066222580", cli1, c2);
+		
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1,e2));
+		
+		
 		
 	}
 
